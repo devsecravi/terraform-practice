@@ -46,6 +46,6 @@ variable "to_port"{
 
 variable "cidr_blocks"{
      
-     default = list
+     type = list
      default= ["0.0.0.0/0"]
 }
