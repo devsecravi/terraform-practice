@@ -32,3 +32,20 @@ variable "sg_description"{
     default = "Allow inbound web traffic"
 }
 
+variable "from_port"{
+
+     type = number
+     default = 0
+}
+
+variable "to_port"{
+    type = number
+
+    default = 0
+}
+
+variable "cidr_blocks"{
+     
+     default = list
+     default= ["0.0.0.0/0"]
+}
