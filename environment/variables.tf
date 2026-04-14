@@ -1,64 +1,13 @@
-variable "ami"{
-
-      type= string
-      default= "ami-0220d79f3f480ecf5"
-}
-
-variable "tages_names"{
-
-     type= object({
-         Name= list(string)
-         Project = string
-     })
-     default = {
-          Name= ["mongodb","catalogue","frontend","redis","user","cart","mysql","shipping","rabbitmq","payment"]
-          Project= "roboshop"
-     } 
-}
-
-variable "instance_type" {
-    type = string
-    default = "t3.micro"
-}
-
-variable "allow_all_terraform"{
-
-     type = string
-     default = "allow-all-terraform"
-}
-
-variable "inbound_traffic" {
-
-      type = string
-      default = "Allow inbound web traffic" 
-}
-
-variable "from_port"{
-
-    type = number
-    default = 0
-}
-
-variable "to_port"{
-    type = number
-    default = 0
-}
-
-variable "cidr_blocks"{
+variable "instances" {
     type = list
-    default = ["0.0.0.0/0"]
+    default = ["mongodb", "redis", "mysql", "rabbitmq", "catalogue", "user", "cart", "shipping", "payment", "frontend"]
 }
 
-variable "ipv6_cidr_blocks"{
-
-    type = list
-    default = ["::/0"]
+# replace with your zone_id and domain_name
+variable "zone_id" {
+    default = "Z05013202FKF0ZL12WAOP"
 }
 
-variable "tags"{
-
-    type = map
-    default = {
-         Name= "allow-all-terraform-security"
-    }
+variable "domain_name" {
+    default = "daws88s.online"
 }

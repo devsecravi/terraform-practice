@@ -1,36 +1,37 @@
-resource "aws_instance" "web" {
-  count=10
-  ami           = var.ami
-  instance_type = var.instance_type
+resource "aws_instance" "example" {
+  #count = 10  
+  count = length(var.instances)
+  ami           = "ami-0220d79f3f480ecf5"
+  instance_type = "t3.micro"
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
 
   tags = {
-        Name = var.tages_names.Name[count.index]
-        Project = var.tages_names.Project
+    Name = var.instances[count.index]
+    Project = "roboshop"
   }
 }
 
-
 resource "aws_security_group" "allow_tls" {
-  name        = var.allow_all_terraform
-  description = var.inbound_traffic
+  name        = "allow-all-roboshop" # this is for AWS account
+  description = "Allow TLS inbound traffic and all outbound traffic"
 
-  
-  ingress {
-    from_port   = var.from_port
-    to_port     = var.to_port
-    protocol    = "-1"
-    cidr_blocks = var.cidr_blocks
-    ipv6_cidr_blocks = var.ipv6_cidr_blocks
-  }
-
-  
   egress {
-    from_port        = var.from_port
-    to_port          = var.to_port
+    from_port        = 0
+    to_port          = 0
     protocol         = "-1"
-    cidr_blocks      = var.cidr_blocks
-    ipv6_cidr_blocks = var.ipv6_cidr_blocks
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags= var.tags
+  ingress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow-all-terraform"
+  }
 }
