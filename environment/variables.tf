@@ -5,7 +5,11 @@ variable "ami"{
 }
 
 variable "tages_names"{
-     type= map
+
+     type= object({
+         Name= list(string)
+         Project = string
+     })
      default = {
           Name= ["mongodb","catalogue","frontend","redis","user","cart","mysql","shipping","rabbitmq","payment"]
           Project= "roboshop"
