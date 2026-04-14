@@ -7,7 +7,7 @@ variable "ami"{
 variable "tages_names"{
      type= map
      default = {
-          Name= "terraform"
+          Name= ["mongodb","catalogue","frontend","redis","user","cart","mysql","shipping","rabbitmq","payment"]
           Project= "roboshop"
      } 
 }
