@@ -3,7 +3,10 @@ resource "aws_instance" "web" {
   ami           = var.ami
   instance_type = var.instance_type
 
-  tags = var.tages_names.count[index]
+  tags = {
+        Name = var.tages_names.Name[count.index]
+        Project = var.tages_names.Project
+  }
 }
 
 
