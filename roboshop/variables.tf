@@ -5,7 +5,7 @@ variable  "tags_list"{
 }
 
 variable "zone_id" {
-    default = "Z05013202FKF0ZL12WAOP"
+    default = "Z05454352LP47ZQWSG7WJ"
 }
 
 variable "domain_name" {
