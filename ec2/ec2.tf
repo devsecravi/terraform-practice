@@ -14,7 +14,7 @@ resource "aws_security_group" "allow_ts"{
      name        = "allow-all-roboshop"
      description = "Allow TLS inbound traffic and all outbound traffic"
 
-    engress {
+    egress {
 
           from_port= 0
           to_port= 0
@@ -31,10 +31,9 @@ resource "aws_security_group" "allow_ts"{
     }
 
 
-   tags = {
+   tags= {
 
-       name = Name= "allow-all-terraform" 
+       name= "allow-all-terraform" 
    }
-
 
 }
